@@ -1,22 +1,37 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="题目链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;average-time-of-process-per-machine&#x2F;description&#x2F;?envType&#x3D;study-plan-v2&amp;envId&#x3D;sql-free-50 Example 1: Input:Activity table:+————+————+—————+———–+| machine_id | proc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1661. Average Time of Process per Machine">
+<meta property="og:url" content="https://pisces34.github.io/2024/11/18/leetcode/1661/index.html">
+<meta property="og:site_name" content="Pisces34">
+<meta property="og:description" content="题目链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;average-time-of-process-per-machine&#x2F;description&#x2F;?envType&#x3D;study-plan-v2&amp;envId&#x3D;sql-free-50 Example 1: Input:Activity table:+————+————+—————+———–+| machine_id | proc">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-18T01:56:55.318Z">
+<meta property="article:modified_time" content="2024-11-18T02:00:09.640Z">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
   
     <meta name="google-site-verification" content="ehKoptg4Br2088SU6ZS4QY2SaUpxMeCnsCUwpCVG1_8" />
   
@@ -25,26 +40,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github-gist.min.css" />
-    
-  
-
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
@@ -53,24 +61,57 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"pisces34.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":"UA-196542794-1","gtag":"G-4G09KLQQ6V","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"pisces34.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":"UA-196542794-1","tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":"G-4G09KLQQ6V","woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>pisces34</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>pisces34</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -87,9 +128,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -99,9 +140,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -111,9 +152,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -123,9 +164,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -135,23 +176,26 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 
-                关于
+                <span>关于</span>
               </a>
             </li>
           
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -159,60 +203,71 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/MacBook.jpeg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="1661. Average Time of Process per Machine">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-11-18 09:56" pubdate>
-        2024年11月18日 上午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1.1k 字
-    </span>
   
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      15
-       分钟
-    </span>
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MacBook.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="1661. Average Time of Process per Machine"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-18 09:56" pubdate>
+          2024年11月18日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          813 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -221,24 +276,29 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">1661. Average Time of Process per Machine</h1>
+            <h1 id="seo-header">1661. Average Time of Process per Machine</h1>
             
-            <div class="markdown-body">
-              <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/average-time-of-process-per-machine/description/?envType=study-plan-v2&amp;envId=sql-free-50">https://leetcode.cn/problems/average-time-of-process-per-machine/description/?envType=study-plan-v2&amp;envId=sql-free-50</a></p>
+            
+              <div class="markdown-body">
+                
+                <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/average-time-of-process-per-machine/description/?envType=study-plan-v2&envId=sql-free-50">https://leetcode.cn/problems/average-time-of-process-per-machine/description/?envType=study-plan-v2&amp;envId=sql-free-50</a></p>
 <p>Example 1:</p>
-<p>Input:<br>Activity table:<br>+————+————+—————+———–+<br>| machine_id | process_id | activity_type | timestamp |<br>+————+————+—————+———–+<br>| 0          | 0          | start         | 0.712     |<br>| 0          | 0          | end           | 1.520     |<br>| 0          | 1          | start         | 3.140     |<br>| 0          | 1          | end           | 4.120     |<br>| 1          | 0          | start         | 0.550     |<br>| 1          | 0          | end           | 1.550     |<br>| 1          | 1          | start         | 0.430     |<br>| 1          | 1          | end           | 1.420     |<br>| 2          | 0          | start         | 4.100     |<br>| 2          | 0          | end           | 4.512     |<br>| 2          | 1          | start         | 2.500     |<br>| 2          | 1          | end           | 5.000     |<br>+————+————+—————+———–+<br>Output:<br>+————+—————–+<br>| machine_id | processing_time |<br>+————+—————–+<br>| 0          | 0.894           |<br>| 1          | 0.995           |<br>| 2          | 1.456           |<br>+————+—————–+<br>Explanation:<br>There are 3 machines running 2 processes each.<br>“<br>Machine 0’s average time is ((1.520 - 0.712) + (4.120 - 3.140)) / 2 = 0.894<br>Machine 1’s average time is ((1.550 - 0.550) + (1.420 - 0.430)) / 2 = 0.995<br>Machine 2’s average time is ((4.512 - 4.100) + (5.000 - 2.500)) / 2 = 1.456<br>“</p>
-<h1 id="Write-your-MySQL-query-statement-below-1"><a href="#Write-your-MySQL-query-statement-below-1" class="headerlink" title="Write your MySQL query statement below 1"></a>Write your MySQL query statement below 1</h1><p>SELECT machine_id,<br>ROUND(SUM(IF(activity_type=”start”,-timestamp,timestamp)) / COUNT(DISTINCT process_id) , 3) AS processing_time<br>FROM Activity<br>GROUP BY machine_id;</p>
-<p>使用 IF(activity_type=”start”, -timestamp, timestamp) 将 start 时间取负值，而 end 时间保持正值。<br>通过 SUM() 累加所有 timestamp，由于 start 和 end 是成对出现的，最终得到的是每个 process_id 的时间差总和。<br>COUNT(DISTINCT process_id) 计算每台机器中唯一的 process_id 数量。<br>SUM / COUNT 求得每台机器的平均处理时间，最终用 ROUND 保留 3 位小数。<br>优点：<br>简洁清晰，逻辑简单，直接按列运算，不需要表连接。<br>不依赖数据的行数或顺序，具有较好的可读性。<br>缺点：<br>依赖于 IF 判断，将正负时间差叠加在一起，这种方式在数据量非常大时可能会有一定的性能开销。<br>假如存在非成对的 start 和 end 记录（例如，缺少 start 或 end），结果可能会不准确。</p>
-<h1 id="Write-your-MySQL-query-statement-below-2"><a href="#Write-your-MySQL-query-statement-below-2" class="headerlink" title="Write your MySQL query statement below 2"></a>Write your MySQL query statement below 2</h1><p>select machine_id,<br>round(<br>    (sum(case activity_type when ‘end’ then timestamp else 0 end)<br>    + sum(case activity_type when ‘start’ then -timestamp else 0 end))<br>    /(count(*)/2),3) processing_time<br>from Activity<br>group by machine_id</p>
-<p>解释：<br>使用 CASE 条件判断，将 end 的 timestamp 累加，将 start 的 timestamp 取负值。<br>SUM() 计算所有 timestamp 的加和，得到每台机器的所有时间差。<br>COUNT(<em>) / 2 假设每个 process_id 有两条记录（start 和 end），因此通过总行数除以 2 来得到进程数。<br>最后计算平均时间差并用 ROUND 保留 3 位小数。<br>优点：<br>使用 COUNT(</em>) / 2 来推断进程数量，避免了 COUNT(DISTINCT process_id) 的开销。<br>表达式对数据规律性（成对出现）进行了假设，适用于严格成对的情况。<br>缺点：<br>假如数据存在不完整的 start 或 end 记录，COUNT(*) / 2 的假设将导致错误的计算结果。<br>逻辑稍显复杂，尤其在理解 CASE 和 COUNT 的作用时可能不直观。</p>
-<h1 id="Write-your-MySQL-query-statement-below-3"><a href="#Write-your-MySQL-query-statement-below-3" class="headerlink" title="Write your MySQL query statement below 3"></a>Write your MySQL query statement below 3</h1><p>SELECT<br>    a.machine_id,<br>    ROUND(<br>        SUM(b.timestamp - a.timestamp) / COUNT(a.machine_id = b.machine_id) , 3)as  processing_time<br>FROM<br>    Activity a<br>LEFT JOIN<br>    Activity b<br>ON<br>    a.machine_id = b.machine_id<br>AND<br>    a.activity_type = ‘start’<br>AND<br>    b.activity_type = ‘end’<br>AND<br>    a.process_id = b.process_id<br>WHERE<br>    b.machine_id is NOT NULL<br>GROUP BY<br>    a.machine_id</p>
-<p>解释：<br>将表 Activity 自连接，通过 LEFT JOIN 连接 start 和 end 的记录。<br>ON 条件：匹配相同的 machine_id 和 process_id，并且 a 为 start，b 为 end。<br>SUM(b.timestamp - a.timestamp) 累加每个 process_id 的时间差。<br>COUNT(a.machine_id = b.machine_id) 计算有效的匹配对数量（即 start 和 end 配对的数量）。<br>计算每台机器的平均处理时间并用 ROUND 保留 3 位小数。<br>优点：<br>严格基于成对的 start 和 end 记录，不会受不完整记录的影响。<br>数据更精确，适合处理复杂或不完全成对的数据场景。<br>缺点：<br>使用 JOIN 操作，性能开销较大，特别是在数据量很大的情况下。<br>写法相对复杂，可读性较低。</p>
+<p>Input:<br>Activity table:<br>+————+————+—————+———–+<br>| machine_id | process_id | activity_type | timestamp |<br>+————+————+—————+———–+<br>| 0          | 0          | start         | 0.712     |<br>| 0          | 0          | end           | 1.520     |<br>| 0          | 1          | start         | 3.140     |<br>| 0          | 1          | end           | 4.120     |<br>| 1          | 0          | start         | 0.550     |<br>| 1          | 0          | end           | 1.550     |<br>| 1          | 1          | start         | 0.430     |<br>| 1          | 1          | end           | 1.420     |<br>| 2          | 0          | start         | 4.100     |<br>| 2          | 0          | end           | 4.512     |<br>| 2          | 1          | start         | 2.500     |<br>| 2          | 1          | end           | 5.000     |<br>+————+————+—————+———–+<br>Output:<br>+————+—————–+<br>| machine_id | processing_time |<br>+————+—————–+<br>| 0          | 0.894           |<br>| 1          | 0.995           |<br>| 2          | 1.456           |<br>+————+—————–+<br>Explanation:<br>There are 3 machines running 2 processes each.<br>“<br>Machine 0’s average time is ((1.520 - 0.712) + (4.120 - 3.140)) &#x2F; 2 &#x3D; 0.894<br>Machine 1’s average time is ((1.550 - 0.550) + (1.420 - 0.430)) &#x2F; 2 &#x3D; 0.995<br>Machine 2’s average time is ((4.512 - 4.100) + (5.000 - 2.500)) &#x2F; 2 &#x3D; 1.456<br>“</p>
+<h1 id="Write-your-MySQL-query-statement-below-1"><a href="#Write-your-MySQL-query-statement-below-1" class="headerlink" title="Write your MySQL query statement below 1"></a>Write your MySQL query statement below 1</h1><p>SELECT machine_id,<br>ROUND(SUM(IF(activity_type&#x3D;”start”,-timestamp,timestamp)) &#x2F; COUNT(DISTINCT process_id) , 3) AS processing_time<br>FROM Activity<br>GROUP BY machine_id;</p>
+<p>使用 IF(activity_type&#x3D;”start”, -timestamp, timestamp) 将 start 时间取负值，而 end 时间保持正值。<br>通过 SUM() 累加所有 timestamp，由于 start 和 end 是成对出现的，最终得到的是每个 process_id 的时间差总和。<br>COUNT(DISTINCT process_id) 计算每台机器中唯一的 process_id 数量。<br>SUM &#x2F; COUNT 求得每台机器的平均处理时间，最终用 ROUND 保留 3 位小数。<br>优点：<br>简洁清晰，逻辑简单，直接按列运算，不需要表连接。<br>不依赖数据的行数或顺序，具有较好的可读性。<br>缺点：<br>依赖于 IF 判断，将正负时间差叠加在一起，这种方式在数据量非常大时可能会有一定的性能开销。<br>假如存在非成对的 start 和 end 记录（例如，缺少 start 或 end），结果可能会不准确。</p>
+<h1 id="Write-your-MySQL-query-statement-below-2"><a href="#Write-your-MySQL-query-statement-below-2" class="headerlink" title="Write your MySQL query statement below 2"></a>Write your MySQL query statement below 2</h1><p>select machine_id,<br>round(<br>    (sum(case activity_type when ‘end’ then timestamp else 0 end)<br>    + sum(case activity_type when ‘start’ then -timestamp else 0 end))<br>    &#x2F;(count(*)&#x2F;2),3) processing_time<br>from Activity<br>group by machine_id</p>
+<p>解释：<br>使用 CASE 条件判断，将 end 的 timestamp 累加，将 start 的 timestamp 取负值。<br>SUM() 计算所有 timestamp 的加和，得到每台机器的所有时间差。<br>COUNT(<em>) &#x2F; 2 假设每个 process_id 有两条记录（start 和 end），因此通过总行数除以 2 来得到进程数。<br>最后计算平均时间差并用 ROUND 保留 3 位小数。<br>优点：<br>使用 COUNT(</em>) &#x2F; 2 来推断进程数量，避免了 COUNT(DISTINCT process_id) 的开销。<br>表达式对数据规律性（成对出现）进行了假设，适用于严格成对的情况。<br>缺点：<br>假如数据存在不完整的 start 或 end 记录，COUNT(*) &#x2F; 2 的假设将导致错误的计算结果。<br>逻辑稍显复杂，尤其在理解 CASE 和 COUNT 的作用时可能不直观。</p>
+<h1 id="Write-your-MySQL-query-statement-below-3"><a href="#Write-your-MySQL-query-statement-below-3" class="headerlink" title="Write your MySQL query statement below 3"></a>Write your MySQL query statement below 3</h1><p>SELECT<br>    a.machine_id,<br>    ROUND(<br>        SUM(b.timestamp - a.timestamp) &#x2F; COUNT(a.machine_id &#x3D; b.machine_id) , 3)as  processing_time<br>FROM<br>    Activity a<br>LEFT JOIN<br>    Activity b<br>ON<br>    a.machine_id &#x3D; b.machine_id<br>AND<br>    a.activity_type &#x3D; ‘start’<br>AND<br>    b.activity_type &#x3D; ‘end’<br>AND<br>    a.process_id &#x3D; b.process_id<br>WHERE<br>    b.machine_id is NOT NULL<br>GROUP BY<br>    a.machine_id</p>
+<p>解释：<br>将表 Activity 自连接，通过 LEFT JOIN 连接 start 和 end 的记录。<br>ON 条件：匹配相同的 machine_id 和 process_id，并且 a 为 start，b 为 end。<br>SUM(b.timestamp - a.timestamp) 累加每个 process_id 的时间差。<br>COUNT(a.machine_id &#x3D; b.machine_id) 计算有效的匹配对数量（即 start 和 end 配对的数量）。<br>计算每台机器的平均处理时间并用 ROUND 保留 3 位小数。<br>优点：<br>严格基于成对的 start 和 end 记录，不会受不完整记录的影响。<br>数据更精确，适合处理复杂或不完全成对的数据场景。<br>缺点：<br>使用 JOIN 操作，性能开销较大，特别是在数据量很大的情况下。<br>写法相对复杂，可读性较低。</p>
 <table>
 <thead>
 <tr>
@@ -448,44 +508,101 @@
 </tr>
 </tbody></table>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/">leetcode算法题</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/" class="category-chain-item">leetcode算法题</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SQL/" class="print-no-link">#SQL</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>1661. Average Time of Process per Machine</div>
+      <div>https://pisces34.github.io/2024/11/18/leetcode/1661/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/03/14/leetcode/1446/" title="1446. 连续字符">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">1446. 连续字符</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/27/leetcode/66/">
+                      <a href="/2024/05/27/leetcode/66/" title="66. 加一">
                         <span class="hidden-mobile">66. 加一</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -501,25 +618,59 @@
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
 
 
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -538,57 +689,59 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span></span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- LeanCloud 统计PV -->
-        <span id="leancloud-site-pv-container" style="display: none">
-            总访问量 
-            <span id="leancloud-site-pv"></span>
-             次
-          </span>
-      
-      
-        <!-- LeanCloud 统计UV -->
-        <span id="leancloud-site-uv-container" style="display: none">
-            总访客数 
-            <span id="leancloud-site-uv"></span>
-             人
-          </span>
-      
-
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span></span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
 
+  
 
-  <!-- SCRIPTS -->
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -607,7 +760,23 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
 
 
   
@@ -616,92 +785,117 @@
 
 
 
+
   
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js></script>
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
 
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
 
 
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
-
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-    <!-- Google Analytics -->
-    <script defer>
-      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
-      ga.l = +new Date;
-      ga('create', 'UA-196542794-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-  
-
-  
-    <!-- Google gtag.js -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4G09KLQQ6V"></script>
-    <script defer>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-4G09KLQQ6V');
-    </script>
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
