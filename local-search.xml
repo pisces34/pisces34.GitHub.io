@@ -4,6 +4,64 @@
   
   
   <entry>
+    <title>3487. 删除后的最大子数组元素和</title>
+    <link href="/2025/03/16/leetcode/3487/"/>
+    <url>/2025/03/16/leetcode/3487/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/maximum-unique-subarray-sum-after-deletion/description/">https://leetcode.cn/problems/maximum-unique-subarray-sum-after-deletion/description/</a></p><p>周赛赶时间，JS写起来感觉比Java简洁些。<br>这道题普遍都有一次罚时，估计是都忘了测试用例[-100,-99] 这样的情况</p><h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>执行用时分布 0ms 击败100.00%使用 JavaScript 的用户</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxSum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> filtered = nums.filter(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num &gt; <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">if</span> (filtered.length == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(...nums);<br>    &#125;<br>    <span class="hljs-keyword">let</span> mySet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(filtered);<br>    <span class="hljs-keyword">let</span> arr = <span class="hljs-built_in">Array</span>.from(mySet);<br>    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;<br>        sum += arr[i];<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数组</tag>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>第 441 场周赛</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>3483. 不同三位偶数的数目</title>
+    <link href="/2025/03/16/leetcode/3483/"/>
+    <url>/2025/03/16/leetcode/3483/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/unique-3-digit-even-numbers/description/">https://leetcode.cn/problems/unique-3-digit-even-numbers/description/</a></p><h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>执行用时分布4ms 击败100.00%使用 JavaScript 的用户</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">digits</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> totalNumbers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">digits</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> mySet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();<br>    <span class="hljs-keyword">const</span> n = digits.length;<br>    <span class="hljs-keyword">let</span> arr = []<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">let</span> num = digits[i]*<span class="hljs-number">100</span>;<br>        <span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (j &lt; n) &#123;<br>            <span class="hljs-keyword">let</span> temp = num;<br>            <span class="hljs-keyword">if</span> ((j+<span class="hljs-number">1</span>)% n == i) &#123;<br>                j++;<br>            &#125;<br>            temp += digits[ (j+<span class="hljs-number">1</span>)% n ]*<span class="hljs-number">10</span>;<br>            <span class="hljs-keyword">if</span> (temp &gt;= <span class="hljs-number">100</span>) &#123;<br>                <span class="hljs-keyword">let</span> k = (j+<span class="hljs-number">2</span>) % n;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = <span class="hljs-number">0</span>; k &lt; n; k++) &#123;<br>                    <span class="hljs-keyword">let</span> res = temp;<br>                    <span class="hljs-comment">// console.log(&quot;temp: &quot;,temp,&quot;i&quot;, i, &quot;j: &quot;, j, &quot;k: &quot;, k)</span><br>                    <span class="hljs-keyword">if</span> (k != (j+<span class="hljs-number">1</span>) % n &amp;&amp; k != i) &#123;<br>                        <span class="hljs-keyword">if</span> (digits[k] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;<br>                            res+= digits[k];<br>                            mySet.add(res);<br>                        &#125;<br>                    &#125;<br>                &#125;<br>            &#125;<br>            j++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> mySet.size;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数组</tag>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>第 152 场双周赛</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>1869. 哪种连续子字符串更长</title>
     <link href="/2025/03/14/leetcode/1869/"/>
     <url>/2025/03/14/leetcode/1869/</url>
