@@ -19,17 +19,18 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;maximum-unique-subarray-sum-after-deletion&#x2F;description&#x2F; 周赛赶时间，JS写起来感觉比Java简洁些。这道题普遍都有一次罚时，估计是都忘了测试用例[-100,-99] 这样的情况 JavaScript执行用时分布 0ms 击败100.00%使用 JavaScript 的用户 1">
+    <meta name="description" content="题目链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;closest-equal-element-queries&#x2F;description&#x2F; 根据灵茶山艾府的题解增加了注释 Java12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;   public L">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3487. 删除后的最大子数组元素和">
-<meta property="og:url" content="https://pisces34.github.io/2025/03/16/leetcode/3487/index.html">
+<meta property="og:title" content="3488. 距离最小相等元素查询">
+<meta property="og:url" content="https://pisces34.github.io/2025/03/17/leetcode/3488/index.html">
 <meta property="og:site_name" content="Pisces34">
-<meta property="og:description" content="题目链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;maximum-unique-subarray-sum-after-deletion&#x2F;description&#x2F; 周赛赶时间，JS写起来感觉比Java简洁些。这道题普遍都有一次罚时，估计是都忘了测试用例[-100,-99] 这样的情况 JavaScript执行用时分布 0ms 击败100.00%使用 JavaScript 的用户 1">
+<meta property="og:description" content="题目链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;closest-equal-element-queries&#x2F;description&#x2F; 根据灵茶山艾府的题解增加了注释 Java12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;   public L">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-16T11:47:43.330Z">
-<meta property="article:modified_time" content="2025-03-16T11:49:32.650Z">
+<meta property="article:published_time" content="2025-03-17T14:41:00.289Z">
+<meta property="article:modified_time" content="2025-03-17T14:44:59.603Z">
+<meta property="article:tag" content="Java">
 <meta property="article:tag" content="数组">
-<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="二分法">
 <meta property="article:tag" content="第 441 场周赛">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -37,7 +38,7 @@
   
     <meta name="google-site-verification" content="ehKoptg4Br2088SU6ZS4QY2SaUpxMeCnsCUwpCVG1_8" />
   
-  <title>3487. 删除后的最大子数组元素和 - Pisces34</title>
+  <title>3488. 距离最小相等元素查询 - Pisces34</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -214,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="3487. 删除后的最大子数组元素和"></span>
+            <span id="subtitle" data-typed-text="3488. 距离最小相等元素查询"></span>
           
         </div>
 
@@ -225,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-16 19:47" pubdate>
-          2025年3月16日 晚上
+        <time datetime="2025-03-17 22:41" pubdate>
+          2025年3月17日 晚上
         </time>
       </span>
     
@@ -238,7 +239,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          128 字
+          386 字
         
       </span>
     
@@ -250,7 +251,7 @@
         
         
           <!-- compatible with older versions-->
-          2 分钟
+          4 分钟
         
       </span>
     
@@ -287,16 +288,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">3487. 删除后的最大子数组元素和</h1>
+            <h1 id="seo-header">3488. 距离最小相等元素查询</h1>
             
             
               <div class="markdown-body">
                 
-                <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-unique-subarray-sum-after-deletion/description/">https://leetcode.cn/problems/maximum-unique-subarray-sum-after-deletion/description/</a></p>
-<p>周赛赶时间，JS写起来感觉比Java简洁些。<br>这道题普遍都有一次罚时，估计是都忘了测试用例[-100,-99] 这样的情况</p>
-<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>执行用时分布 0ms 击败100.00%使用 JavaScript 的用户</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxSum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> filtered = nums.filter(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num &gt; <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">if</span> (filtered.length == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(...nums);<br>    &#125;<br>    <span class="hljs-keyword">let</span> mySet = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(filtered);<br>    <span class="hljs-keyword">let</span> arr = <span class="hljs-built_in">Array</span>.from(mySet);<br>    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;<br>        sum += arr[i];<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
+                <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/closest-equal-element-queries/description/">https://leetcode.cn/problems/closest-equal-element-queries/description/</a></p>
+<p>根据灵茶山艾府的题解增加了注释</p>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>   <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">solveQueries</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span>[] queries)</span> </span>&#123;<br>       Map&lt;Integer, List&lt;Integer&gt;&gt; indices = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>       <span class="hljs-comment">// 每个数对应的出现在nums中的下标位置，存入 indices.get(nums[i]);</span><br>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>           <span class="hljs-comment">// computeIfAbsent 方法返回的是 nums[i] 对应的 List&lt;Integer&gt;</span><br>           <span class="hljs-comment">// add(i) 直接在这个 List&lt;Integer&gt; 添加 i</span><br>           indices.computeIfAbsent(nums[i], k -&gt; <span class="hljs-keyword">new</span> ArrayList&lt;&gt;()).add(i);<br>       &#125;<br>       <span class="hljs-keyword">int</span> n = nums.length;<br>       <span class="hljs-keyword">for</span> (List&lt;Integer&gt; pos : indices.values()) &#123;<br>           <span class="hljs-comment">// 该数字第一次出现在nums中的下标</span><br>           <span class="hljs-keyword">int</span> start = pos.get(<span class="hljs-number">0</span>);<br>           <span class="hljs-comment">// 该数字最后一次出现在nums中的下标</span><br>           <span class="hljs-keyword">int</span> end = pos.get(pos.size() -<span class="hljs-number">1</span>);<br>           <span class="hljs-comment">// 由于是循环数组, (start + n) % n = start</span><br>           <span class="hljs-comment">// 从头向右走到尾再回到起点处, 也有一个下标即 start + n</span><br>           pos.add(start + n);<br>           <span class="hljs-comment">// 从头向左走，即-1为数组末尾下标, -1往左递减直到end为止</span><br>           <span class="hljs-comment">// 所以左侧也新增一个下标即 end - n</span><br>           pos.add(<span class="hljs-number">0</span>, end - n);<br>       &#125;<br><br>       List&lt;Integer&gt; ans = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(queries.length); <span class="hljs-comment">// 预分配空间</span><br>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : queries) &#123;<br>           List&lt;Integer&gt; pos = indices.get(nums[i]);<br>           <span class="hljs-comment">// 只出现一次 + 2个新增下标 = 3, 则不存在第二个相同值, 返回-1</span><br>           <span class="hljs-keyword">if</span> (pos.size() == <span class="hljs-number">3</span>) &#123;<br>               ans.add(-<span class="hljs-number">1</span>);<br>           &#125; <span class="hljs-keyword">else</span> &#123;<br>               <span class="hljs-comment">// 在pos数组中二分查找 i的位置，即返回值 j</span><br>               <span class="hljs-keyword">int</span> j = Collections.binarySearch(pos, i);<br>               <span class="hljs-comment">// pos[j−1] 就是在 i 左边的最近位置, 小于 i</span><br>               <span class="hljs-comment">// pos[j+1] 就是在 i 右边的最近位置, 大于 i</span><br>               ans.add(Math.min(i - pos.get(j - <span class="hljs-number">1</span>), pos.get(j + <span class="hljs-number">1</span>) - i));<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">return</span> ans;<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -329,9 +328,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
         <a href="/tags/%E6%95%B0%E7%BB%84/" class="print-no-link">#数组</a>
       
-        <a href="/tags/JavaScript/" class="print-no-link">#JavaScript</a>
+        <a href="/tags/%E4%BA%8C%E5%88%86%E6%B3%95/" class="print-no-link">#二分法</a>
       
         <a href="/tags/%E7%AC%AC-441-%E5%9C%BA%E5%91%A8%E8%B5%9B/" class="print-no-link">#第 441 场周赛</a>
       
@@ -345,15 +346,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>3487. 删除后的最大子数组元素和</div>
-      <div>https://pisces34.github.io/2025/03/16/leetcode/3487/</div>
+      <div>3488. 距离最小相等元素查询</div>
+      <div>https://pisces34.github.io/2025/03/17/leetcode/3488/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月16日</div>
+          <div>2025年3月17日</div>
         </div>
       
       
@@ -385,18 +386,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/17/leetcode/3488/" title="3488. 距离最小相等元素查询">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">3488. 距离最小相等元素查询</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/16/leetcode/3483/" title="3483. 不同三位偶数的数目">
-                        <span class="hidden-mobile">3483. 不同三位偶数的数目</span>
+                      <a href="/2025/03/16/leetcode/3487/" title="3487. 删除后的最大子数组元素和">
+                        <span class="hidden-mobile">3487. 删除后的最大子数组元素和</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

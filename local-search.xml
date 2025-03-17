@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>3488. 距离最小相等元素查询</title>
+    <link href="/2025/03/17/leetcode/3488/"/>
+    <url>/2025/03/17/leetcode/3488/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/closest-equal-element-queries/description/">https://leetcode.cn/problems/closest-equal-element-queries/description/</a></p><p>根据灵茶山艾府的题解增加了注释</p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>   <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">solveQueries</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span>[] queries)</span> </span>&#123;<br>       Map&lt;Integer, List&lt;Integer&gt;&gt; indices = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>       <span class="hljs-comment">// 每个数对应的出现在nums中的下标位置，存入 indices.get(nums[i]);</span><br>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>           <span class="hljs-comment">// computeIfAbsent 方法返回的是 nums[i] 对应的 List&lt;Integer&gt;</span><br>           <span class="hljs-comment">// add(i) 直接在这个 List&lt;Integer&gt; 添加 i</span><br>           indices.computeIfAbsent(nums[i], k -&gt; <span class="hljs-keyword">new</span> ArrayList&lt;&gt;()).add(i);<br>       &#125;<br>       <span class="hljs-keyword">int</span> n = nums.length;<br>       <span class="hljs-keyword">for</span> (List&lt;Integer&gt; pos : indices.values()) &#123;<br>           <span class="hljs-comment">// 该数字第一次出现在nums中的下标</span><br>           <span class="hljs-keyword">int</span> start = pos.get(<span class="hljs-number">0</span>);<br>           <span class="hljs-comment">// 该数字最后一次出现在nums中的下标</span><br>           <span class="hljs-keyword">int</span> end = pos.get(pos.size() -<span class="hljs-number">1</span>);<br>           <span class="hljs-comment">// 由于是循环数组, (start + n) % n = start</span><br>           <span class="hljs-comment">// 从头向右走到尾再回到起点处, 也有一个下标即 start + n</span><br>           pos.add(start + n);<br>           <span class="hljs-comment">// 从头向左走，即-1为数组末尾下标, -1往左递减直到end为止</span><br>           <span class="hljs-comment">// 所以左侧也新增一个下标即 end - n</span><br>           pos.add(<span class="hljs-number">0</span>, end - n);<br>       &#125;<br><br>       List&lt;Integer&gt; ans = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(queries.length); <span class="hljs-comment">// 预分配空间</span><br>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : queries) &#123;<br>           List&lt;Integer&gt; pos = indices.get(nums[i]);<br>           <span class="hljs-comment">// 只出现一次 + 2个新增下标 = 3, 则不存在第二个相同值, 返回-1</span><br>           <span class="hljs-keyword">if</span> (pos.size() == <span class="hljs-number">3</span>) &#123;<br>               ans.add(-<span class="hljs-number">1</span>);<br>           &#125; <span class="hljs-keyword">else</span> &#123;<br>               <span class="hljs-comment">// 在pos数组中二分查找 i的位置，即返回值 j</span><br>               <span class="hljs-keyword">int</span> j = Collections.binarySearch(pos, i);<br>               <span class="hljs-comment">// pos[j−1] 就是在 i 左边的最近位置, 小于 i</span><br>               <span class="hljs-comment">// pos[j+1] 就是在 i 右边的最近位置, 大于 i</span><br>               ans.add(Math.min(i - pos.get(j - <span class="hljs-number">1</span>), pos.get(j + <span class="hljs-number">1</span>) - i));<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">return</span> ans;<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>数组</tag>
+      
+      <tag>二分法</tag>
+      
+      <tag>第 441 场周赛</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>3487. 删除后的最大子数组元素和</title>
     <link href="/2025/03/16/leetcode/3487/"/>
     <url>/2025/03/16/leetcode/3487/</url>
