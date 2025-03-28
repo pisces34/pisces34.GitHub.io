@@ -4,6 +4,141 @@
   
   
   <entry>
+    <title>852. 山脉数组的峰顶索引</title>
+    <link href="/2025/03/28/leetcode/852/"/>
+    <url>/2025/03/28/leetcode/852/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/peak-index-in-a-mountain-array/description/">https://leetcode.cn/problems/peak-index-in-a-mountain-array/description/</a></p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">peakIndexInMountainArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> high = arr.length - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> low = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> mid = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (low &lt; high) &#123;<br>            mid = low  + ((high - low) / <span class="hljs-number">2</span>);<br>            <span class="hljs-keyword">int</span> midVal = arr[mid];<br>            <span class="hljs-keyword">if</span> (midVal &gt; arr[mid-<span class="hljs-number">1</span>] &amp;&amp; midVal &gt; arr[mid+<span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (midVal &gt; arr[mid+<span class="hljs-number">1</span>]) &#123;<br>                high = mid;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                low = mid;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> mid;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>二分法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>303. 区域和检索 - 数组不可变</title>
+    <link href="/2025/03/28/leetcode/303/"/>
+    <url>/2025/03/28/leetcode/303/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/range-sum-query-immutable/description/">https://leetcode.cn/problems/range-sum-query-immutable/description/</a></p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumArray</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] sum;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NumArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        sum = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[nums.length + <span class="hljs-number">1</span>];<br>        sum[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            sum[i+<span class="hljs-number">1</span>] = sum[i] + nums[i];<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">sumRange</span><span class="hljs-params">(<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> sum[right+<span class="hljs-number">1</span>] - sum[left];<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your NumArray object will be instantiated and called as such:</span><br><span class="hljs-comment"> * NumArray obj = new NumArray(nums);</span><br><span class="hljs-comment"> * int param_1 = obj.sumRange(left,right);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>前缀和</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1422. 分割字符串的最大得分</title>
+    <link href="/2025/03/28/leetcode/1422/"/>
+    <url>/2025/03/28/leetcode/1422/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/maximum-score-after-splitting-a-string/description/">https://leetcode.cn/problems/maximum-score-after-splitting-a-string/description/</a></p><h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">s</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxScore = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> one = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> zero = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; s.length; i++) &#123;<br>        <span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (start &lt; i) &#123;<br>            <span class="hljs-keyword">if</span> (s[start] === <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>                zero++;<br>            &#125;<br>            start ++;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i; j &lt; s.length; j++) &#123;<br>            <span class="hljs-keyword">if</span> (s[j] === <span class="hljs-string">&#x27;1&#x27;</span>) &#123;<br>                one ++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (zero + one &gt; sum) &#123;<br>            sum = zero + one;<br>        &#125;<br>        zero = <span class="hljs-number">0</span>;<br>        one = <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数组</tag>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>709. 转换成小写字母</title>
+    <link href="/2025/03/28/leetcode/709/"/>
+    <url>/2025/03/28/leetcode/709/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/to-lower-case/description/">https://leetcode.cn/problems/to-lower-case/description/</a></p><p>ascii码应用</p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toLowerCase</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        <span class="hljs-keyword">char</span>[] arr = s.toCharArray();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (arr[i] &gt;= <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; arr[i] &lt;= <span class="hljs-string">&#x27;Z&#x27;</span>) &#123;<br>                arr[i] = (<span class="hljs-keyword">char</span>) (arr[i] + <span class="hljs-number">32</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> String(arr);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>字符串</tag>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1512. 好数对的数目</title>
+    <link href="/2025/03/28/leetcode/1512/"/>
+    <url>/2025/03/28/leetcode/1512/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/number-of-good-pairs/">https://leetcode.cn/problems/number-of-good-pairs/</a></p><p>统计每对数出现的次数并求和，需要先求和再递增，避免第一次出现时被计入。</p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numIdenticalPairs</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span>[] count = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">101</span>];<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> a : nums) &#123;<br>            sum += count[a];<br>            count[a]++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>数组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>3488. 距离最小相等元素查询</title>
     <link href="/2025/03/17/leetcode/3488/"/>
     <url>/2025/03/17/leetcode/3488/</url>
@@ -25,8 +160,6 @@
       <tag>数组</tag>
       
       <tag>二分法</tag>
-      
-      <tag>第 441 场周赛</tag>
       
     </tags>
     
@@ -54,8 +187,6 @@
       <tag>数组</tag>
       
       <tag>JavaScript</tag>
-      
-      <tag>第 441 场周赛</tag>
       
     </tags>
     
