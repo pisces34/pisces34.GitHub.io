@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>455. 分发饼干</title>
+    <link href="/2025/04/24/leetcode/455/"/>
+    <url>/2025/04/24/leetcode/455/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/assign-cookies/description/">https://leetcode.cn/problems/assign-cookies/description/</a></p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findContentChildren</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] g, <span class="hljs-keyword">int</span>[] s)</span> </span>&#123;<br>        Arrays.sort(g);<br>        Arrays.sort(s);<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>( i &lt; s.length &amp;&amp; j &lt; g.length) &#123;<br>           <span class="hljs-keyword">if</span> (s[i] &lt; g[j] ) &#123;<br>                i++;<br>           &#125; <span class="hljs-keyword">else</span> &#123;<br>            sum ++;<br>            j++;<br>            i++;<br>           &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>852. 山脉数组的峰顶索引</title>
     <link href="/2025/03/28/leetcode/852/"/>
     <url>/2025/03/28/leetcode/852/</url>
