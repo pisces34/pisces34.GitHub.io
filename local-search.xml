@@ -4,6 +4,87 @@
   
   
   <entry>
+    <title>3527. 找到最常见的回答</title>
+    <link href="/2025/05/08/leetcode/3527/"/>
+    <url>/2025/05/08/leetcode/3527/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/find-the-most-common-response/description/">https://leetcode.cn/problems/find-the-most-common-response/description/</a></p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">findCommonResponse</span><span class="hljs-params">(List&lt;List&lt;String&gt;&gt; responses)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> maxCount = <span class="hljs-number">0</span>;<br>        String ans = <span class="hljs-string">&quot;&quot;</span>;<br>        Map&lt;String, Integer&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>        Set&lt;String&gt; mySet = <span class="hljs-keyword">new</span> HashSet&lt;&gt;();<br>        <span class="hljs-keyword">for</span>(List&lt;String&gt; list : responses) &#123;<br>            mySet.clear();<br>            <span class="hljs-keyword">for</span>(String word : list) &#123;<br>                <span class="hljs-keyword">if</span>(!mySet.add(word)) &#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <br>                <span class="hljs-keyword">if</span> (map.containsKey(word)) &#123;<br>                    map.put(word, map.get(word) + <span class="hljs-number">1</span>);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    map.put(word, <span class="hljs-number">1</span>);<br>                &#125;<br>                <span class="hljs-keyword">int</span> count = map.get(word);<br>                <span class="hljs-keyword">if</span> (count &gt; maxCount || (count == maxCount &amp;&amp; word.compareTo(ans) &lt; <span class="hljs-number">0</span>)) &#123;<br>                    maxCount = count;<br>                    ans = word;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>滑动窗口</tag>
+      
+      <tag>哈希表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>122. 买卖股票的最佳时机 II</title>
+    <link href="/2025/05/08/leetcode/122/"/>
+    <url>/2025/05/08/leetcode/122/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/">https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/</a></p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] prices)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (prices[i] &gt; prices[i - <span class="hljs-number">1</span>]) &#123;<br>                sum += prices[i] -  prices[i - <span class="hljs-number">1</span>];<br>            &#125;    <br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>贪心</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>3536. 两个数字的最大乘积</title>
+    <link href="/2025/05/08/leetcode/3536/"/>
+    <url>/2025/05/08/leetcode/3536/</url>
+    
+    <content type="html"><![CDATA[<p>题目链接：<a href="https://leetcode.cn/problems/maximum-product-of-two-digits/description/">https://leetcode.cn/problems/maximum-product-of-two-digits/description/</a></p><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxProduct</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>, b = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(n &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span> (n % <span class="hljs-number">10</span> &gt; a) &#123;<br>                b = a;<br>                a = n % <span class="hljs-number">10</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n % <span class="hljs-number">10</span> &gt; b)&#123;<br>                b = n % <span class="hljs-number">10</span>;<br>            &#125;<br>            n /= <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> a * b;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>455. 分发饼干</title>
     <link href="/2025/04/24/leetcode/455/"/>
     <url>/2025/04/24/leetcode/455/</url>
